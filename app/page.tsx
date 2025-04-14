@@ -1,52 +1,74 @@
 // app/dashboard/page.tsx
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import {prisma} from '@/lib/prisma';
+import DashboardComponent from './dashboard-component';
+import { prisma } from '@/lib/prisma';
 
-export default async function Dashboard() {
-  const [categoriesCount, subcategoriesCount, productsCount, liveProductsCount] = await Promise.all([
+export default async function DashboardPage() {
+  // Fetch all data in parallel
+  const [
+    categoriesCount,
+    subcategoriesCount,
+    productsCount,
+    liveProductsCount,
+    categories,
+    recentProducts,
+    inventoryStatus
+  ] = await Promise.all([
     prisma.category.count(),
     prisma.subcategory.count(),
     prisma.product.count(),
     prisma.product.count({ where: { isLive: true } }),
+    prisma.category.findMany({
+      include: {
+        _count: {
+          select: { products: true }
+        }
+      }
+    }),
+    prisma.product.findMany({
+      take: 5,
+      orderBy: { createdAt: 'desc' },
+      include: {
+        category: true,
+        subcategory: true
+      }
+    }),
+    prisma.product.findMany({
+      select: {
+        name: true,
+        quantity: true
+      },
+      orderBy: { quantity: 'asc' },
+      take: 5
+    })
   ]);
 
+  // Prepare data for charts
+  const categoryDistribution = categories.map(category => ({
+    name: category.name,
+    value: category._count.products
+  }));
+
+  const inventoryData = {
+    labels: inventoryStatus.map(item => item.name),
+    datasets: [{
+      label: 'Quantity',
+      data: inventoryStatus.map(item => item.quantity),
+      backgroundColor: inventoryStatus.map(item => 
+        item.quantity === 0 ? '#ef4444' : 
+        item.quantity < 10 ? '#f59e0b' : '#10b981'
+      )
+    }]
+  };
+
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
-          <CardHeader>
-            <CardTitle>Categories</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-4xl font-bold">{categoriesCount}</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Subcategories</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-4xl font-bold">{subcategoriesCount}</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Total Products</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-4xl font-bold">{productsCount}</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Live Products</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-4xl font-bold">{liveProductsCount}</p>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+    <DashboardComponent 
+      categoriesCount={categoriesCount}
+      subcategoriesCount={subcategoriesCount}
+      productsCount={productsCount}
+      liveProductsCount={liveProductsCount}
+      categoryDistribution={categoryDistribution}
+      inventoryData={inventoryData}
+      recentProducts={recentProducts}
+    />
   );
 }
