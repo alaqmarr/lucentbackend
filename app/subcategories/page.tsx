@@ -19,7 +19,7 @@ export default async function CategoriesPage() {
     <div className="container mx-auto py-10">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Subcategories</h1>
-        <Link href="/categories/new">
+        <Link href="/subcategories/new">
           <Button>New Subcategory</Button>
         </Link>
       </div>
