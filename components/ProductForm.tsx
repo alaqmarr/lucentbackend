@@ -29,6 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { TipTapEditor } from './editor/tiptap-editor';
 
 // Define extended Product type with relations
 type ProductWithRelations = Product & {
@@ -319,24 +320,24 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
           {/* Description */}
           <div className="md:col-span-2">
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Product description"
-                      className="min-h-[120px]"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+  <FormField
+    control={form.control}
+    name="description"
+    render={({ field }) => (
+      <FormItem>
+        <FormLabel>Description</FormLabel>
+        <FormControl>
+          <TipTapEditor
+            content={field.value || ''}
+            onChange={field.onChange}
+            placeholder="Write a detailed product description..."
+          />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    )}
+  />
+</div>
         </div>
 
         <div className="flex justify-end gap-4">
