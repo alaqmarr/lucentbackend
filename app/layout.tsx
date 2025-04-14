@@ -24,7 +24,7 @@ export default function RootLayout({
       <SidebarProvider>
       <AppSidebar />
       <main
-      className='flex flex-col items-center justify-between p-4 bg-gray-100'
+      className='p-6'
       >
         <SidebarTrigger />
         {children}
