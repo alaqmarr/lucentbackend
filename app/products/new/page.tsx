@@ -8,6 +8,7 @@ import { Category, Subcategory } from '@prisma/client';
 
 export default function NewProductPage() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
 
@@ -23,11 +24,15 @@ export default function NewProductPage() {
       ]);
       setCategories(categoriesData);
       setSubcategories(subcategoriesData);
+      setIsLoading(false);
     };
 
     fetchData();
   }, []);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="container mx-auto py-10">
       <ProductForm

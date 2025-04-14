@@ -78,6 +78,9 @@ export default function ProductsPage() {
         }
     };
 
+    if (isLoading) {
+        return <div className="text-center">Loading...</div>;
+    }
     return (
         <div className="container mx-auto py-8">
             <div className="flex justify-between items-center mb-8">
