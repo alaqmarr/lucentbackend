@@ -18,9 +18,9 @@ export default async function CategoriesPage() {
   return (
     <div className="container mx-auto py-10">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Sub Categories</h1>
+        <h1 className="text-2xl font-bold">Categories</h1>
         <Link href="/subcategories/new">
-          <Button>Add Category</Button>
+          <Button>New Category</Button>
         </Link>
       </div>
       <DataTable columns={columns} data={categories} />

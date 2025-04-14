@@ -25,7 +25,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useEffect, useState } from 'react';
-import { Category, Subcategory } from '@prisma/client';
+import { Category } from '@prisma/client';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -38,7 +38,7 @@ const formSchema = z.object({
 
 export function SubcategoryForm() {
   const router = useRouter();
-  const [categories, setCategories] = useState<Subcategory[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {

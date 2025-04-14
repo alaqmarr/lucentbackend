@@ -1,6 +1,6 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
-import { Category, Subcategory } from "@prisma/client";
+import { Category, Product } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
@@ -11,16 +11,61 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal, Edit, Trash } from "lucide-react";
 
-export const columns: ColumnDef<Subcategory>[] = [
+const deleteProduct = async (id: string) => {
+  const res = await fetch(`/api/products/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) {
+    throw new Error("Failed to delete product");
+  }
+}
+
+export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => (
-      <Link 
+      <Link
         href={`/categories/${row.original.id}`}
         className="font-medium hover:underline"
       >
         {row.getValue("name")}
+      </Link>
+    ),
+  },
+  {
+    accessorKey: "isLive",
+    header: "Live",
+    cell: ({ row }) => (
+      <Link
+        href={`/categories/${row.original.id}`}
+        className="font-medium hover:underline"
+      >
+        {row.getValue("isLive") ? "Yes" : "No"}
+      </Link>
+    ),
+  },
+  {
+    accessorKey: "categoryId",
+    header: "Category",
+    cell: ({ row }) => (
+      <Link
+        href={`/categories/${row.original.id}`}
+        className="font-medium hover:underline"
+      >
+        {row.getValue("categoryId") || "-"}
+      </Link>
+    ),
+  },
+  {
+    accessorKey: "subcategoryId",
+    header: "Subcategory",
+    cell: ({ row }) => (
+      <Link
+        href={`/categories/${row.original.id}`}
+        className="font-medium hover:underline"
+      >
+        {row.getValue("subcategoryId") || "-"}
       </Link>
     ),
   },
@@ -60,14 +105,9 @@ export const columns: ColumnDef<Subcategory>[] = [
                 Edit
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link
-                href={`/categories/${category.id}/delete`}
-                className="flex items-center text-destructive"
-              >
-                <Trash className="mr-2 h-4 w-4" />
-                Delete
-              </Link>
+            <DropdownMenuItem onClick={() => deleteProduct(category.id)} className="text-red-500">
+              <Trash className="mr-2 h-4 w-4 text-red-500" />
+              Delete
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
