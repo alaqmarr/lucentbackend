@@ -3,11 +3,14 @@ import {prisma} from '@/lib/prisma';
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  // Convert the Promise to a string using await
+  const { id } = await params;
+
   try {
     const category = await prisma.category.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         subcategories: true,
         products: true,
@@ -29,12 +32,13 @@ export async function GET(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     const body = await req.json();
     const updatedCategory = await prisma.category.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         name: body.name,
         description: body.description,
@@ -52,11 +56,12 @@ export async function PATCH(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
     await prisma.category.delete({
-      where: { id: params.id },
+      where: { id: id },
     });
     return NextResponse.json({ success: true });
   } catch (error) {
