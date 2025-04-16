@@ -23,7 +23,7 @@ export function RecentProducts({ products }: RecentProductsProps) {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-medium">${product.price.toFixed(2)}</span>
+            <span className="font-medium">₹{product.price.toFixed(2)}</span>
             <Button variant="outline" size="sm" asChild>
               <Link href={`/products/${product.id}`}>
                 <Icons.eye className="h-4 w-4" />
