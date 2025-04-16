@@ -40,6 +40,13 @@ export function SubcategoryForm() {
   const router = useRouter();
   const [categories, setCategories] = useState<Subcategory[]>([]);
 
+  // check the name field and add make it lowercase, replace hyphens and set it onto the slug field
+
+  const handleNameChange = (name: string) => {
+    const slug = name.toLowerCase().replace(/\s+/g, '-');
+    form.setValue('slug', slug);
+  };
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -97,7 +104,13 @@ export function SubcategoryForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Subcategory Name</FormLabel>
-                <FormControl>
+                <FormControl
+                onChange={(e) => {
+                  field.onChange(e);
+                  handleNameChange((e.target as HTMLInputElement).value);
+                }
+                }
+                >
                   <Input placeholder="Enter subcategory name" {...field} />
                 </FormControl>
                 <FormMessage />

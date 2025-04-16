@@ -27,9 +27,10 @@ const formSchema = z.object({
 });
 
 export function CategoryForm() {
-    
+
     const router = useRouter();
 
+    
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -38,7 +39,11 @@ export function CategoryForm() {
             description: '',
         },
     });
-
+    
+    const handleNameChange = (name: string) => {
+        const slug = name.toLowerCase().replace(/\s+/g, '-');
+        form.setValue('slug', slug);
+    };
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const response = await fetch('/api/categories', {
@@ -86,7 +91,13 @@ export function CategoryForm() {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>URL Slug</FormLabel>
-                                <FormControl>
+                                <FormControl
+                                    onChange={(e) => {
+                                        field.onChange(e);
+                                        handleNameChange((e.target as HTMLInputElement).value);
+                                    }
+                                    }
+                                >
                                     <Input placeholder="category-slug" {...field} />
                                 </FormControl>
                                 <FormMessage />

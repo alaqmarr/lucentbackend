@@ -40,6 +40,10 @@ export function SubcategoryForm() {
   const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
 
+  const handleNameChange = (name: string) => {
+    const slug = name.toLowerCase().replace(/\s+/g, '-');
+    form.setValue('slug', slug);
+  };
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -111,7 +115,13 @@ export function SubcategoryForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>URL Slug</FormLabel>
-                <FormControl>
+                <FormControl
+                onChange={(e) => {
+                  field.onChange(e);
+                  handleNameChange((e.target as HTMLInputElement).value);
+                }
+                }
+                >
                   <Input placeholder="subcategory-slug" {...field} />
                 </FormControl>
                 <FormMessage />
