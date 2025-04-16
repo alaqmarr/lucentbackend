@@ -7,6 +7,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ModeToggle } from '@/components/theme-toggle';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             <main
               className='max-w-[100vw] p-4'
             >
+              <Toaster/>
               <SidebarTrigger />
               {children}
             </main>

@@ -65,7 +65,7 @@ export const columns: ColumnDef<Subcategory>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuItem asChild>
               <Link
-                href={`/categories/${category.id}`}
+                href={`/subcategories/${category.id}`}
                 className="flex items-center"
               >
                 <Edit className="mr-2 h-4 w-4" />
