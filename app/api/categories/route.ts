@@ -28,7 +28,8 @@ export async function POST(req: Request) {
     const name = await checkCategoryName(body.name);
     const category = await prisma.category.create({
       data: {
-        name: name,
+        id: name,
+        name: body.name,
         description: body.description,
         slug: body.slug,
       },
