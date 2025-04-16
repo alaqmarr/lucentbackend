@@ -73,16 +73,10 @@ export const columns: ColumnDef<Category>[] = [
                 Edit
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Button
-                variant="destructive"
-                className="w-full"
-                onClick={() => remove(category.id)}
-              >
-                <Trash className="mr-2 h-4 w-4" />
-                Delete
-              </Button>
-            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => remove(category.id)} className="text-red-500">
+                          <Trash className="mr-2 h-4 w-4 text-red-500" />
+                          Delete
+                        </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
