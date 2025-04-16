@@ -11,8 +11,8 @@ import { ModeToggle } from '@/components/theme-toggle';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'E-commerce Admin',
-  description: 'Admin dashboard for e-commerce store',
+  title: 'ACME Flow Control | Manage',
+  description: 'Manage ACME Flow Control',
 };
 
 export default function RootLayout({
