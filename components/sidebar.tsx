@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Home, ShoppingCart, Tags, Layers, Settings } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { ModeToggle } from './theme-toggle';
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -40,8 +41,11 @@ export function Sidebar() {
                 {item.label}
               </Link>
             ))}
+            
           </nav>
+          
         </div>
+        <ModeToggle/>
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ import './globals.css';
 import { Sidebar } from '@/components/sidebar';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
+import { ThemeProvider } from '@/components/theme-provider';
+import { ModeToggle } from '@/components/theme-toggle';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,15 +23,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <SidebarProvider>
-      <AppSidebar />
-      <main
-      className='p-6'
-      >
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SidebarProvider>
+            <AppSidebar />
+            <main
+              className='p-6'
+            >
+              <SidebarTrigger />
+              {children}
+            </main>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
