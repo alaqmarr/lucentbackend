@@ -13,7 +13,11 @@ export async function GET(
       where: { id: id },
       include: {
         subcategories: true,
-        products: true,
+        products: {
+          include: {
+            images: true,
+          },
+        }
       },
     });
 
