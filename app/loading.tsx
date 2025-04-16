@@ -14,9 +14,6 @@ export default function Loading() {
           <Loader2 className="animate-spin" size={20} />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">
-            Please wait while we fetch the data
-          </div>
           <p className="text-xs text-muted-foreground mt-1">Powered by https://alaqmar.dev</p>
         </CardContent>
       </Card>
