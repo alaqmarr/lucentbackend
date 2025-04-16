@@ -41,7 +41,7 @@ export default function DashboardComponent({
       {/* Header */}
       <div className="flex justify-center items-center">
         <div>
-          <h1 className={`${bFont.className} text-3xl font-extrabold text-muted-foreground uppercase`}>ACME | Dashboard Overview</h1>
+          <h1 className={`${bFont.className} text-3xl font-extrabold text-muted-foreground uppercase`}>Store Overview</h1>
         </div>
       </div>
 

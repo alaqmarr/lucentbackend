@@ -16,9 +16,9 @@ export default async function CategoriesPage() {
   const categories = await getCategories();
 
   return (
-    <div className="max-w-[100vw] space-y-8">
+    <div className="max-w-[100vw] p-2">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Subcategories</h1>
+        <h1 className="text-xl font-bold">Subcategories</h1>
         <Link href="/subcategories/new">
           <Button>New Subcategory</Button>
         </Link>

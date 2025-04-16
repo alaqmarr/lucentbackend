@@ -17,6 +17,7 @@ import { Switch } from "./ui/switch"
 import { updateSetting } from "@/actions/settings"
 import SettingsSwitch from "./settings-switch"
 import { bFont, formatRelativeTime, tekofont } from "@/lib/utils"
+import { Separator } from "./ui/separator"
 
 // Menu items
 const items = [
@@ -37,12 +38,19 @@ export async function AppSidebar() {
     return (
         <Sidebar>
             <SidebarContent>
-                <SidebarGroup>
+                <SidebarGroup
+                className={`flex flex-col w-full`}
+                >
                     <SidebarGroupLabel
-                        className={`${bFont.className} text-lg font-extrabold text-muted-foreground uppercase`}
-                    >ACME FLOW CONTROL</SidebarGroupLabel>
+                        className={`${bFont.className} text-lg font-extrabold text-muted-foreground uppercase underline`}
+                    >
+                        {process.env.NEXT_PUBLIC_LONG_NAME}
+                    </SidebarGroupLabel>
                     <SidebarGroupContent>
-                        <SidebarMenu>
+                        <Separator className="w-full border-black"/>
+                        <SidebarMenu
+                        className="gap-y-2"
+                        >
                             {items.map((item) => (
                                 <SidebarMenuItem key={item.href}>
                                     <SidebarMenuButton asChild>
@@ -56,10 +64,6 @@ export async function AppSidebar() {
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
-
-                <div className="flex flex-col items-start justify-center p-4">
-                    <ModeToggle />
-                </div>
             </SidebarContent>
             <SidebarFooter className="space-y-2 p-2 mb-4">
                 {settings.map((setting) => (

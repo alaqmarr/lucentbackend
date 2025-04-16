@@ -5,8 +5,8 @@ import { ChevronLeft } from 'lucide-react';
 
 export default function CreateCategoryPage() {
   return (
-    <div className="container mx-auto py-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="flex flex-col items-center justify-center p-2">
+      <div className="flex items-center justify-between mb-6 mt-6">
         <div className="flex items-center gap-4">
           <Link href="/categories">
             <Button variant="outline" size="icon" className="h-8 w-8">
@@ -18,7 +18,7 @@ export default function CreateCategoryPage() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6">
+      <div className=" rounded-lg shadow p-6">
         <CategoryForm />
       </div>
     </div>

@@ -5,8 +5,8 @@ import { ChevronLeft } from 'lucide-react';
 
 export default function CreateSubcategoryPage() {
   return (
-    <div className="container mx-auto py-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="flex flex-col items-center justify-center p-2">
+      <div className="flex items-center justify-between mb-6 mt-6">
         <div className="flex items-center gap-4">
           <Link href="/subcategories">
             <Button variant="outline" size="icon" className="h-8 w-8">
@@ -14,11 +14,11 @@ export default function CreateSubcategoryPage() {
               <span className="sr-only">Back</span>
             </Button>
           </Link>
-          <h1 className="text-2xl font-bold">Create New Subcategory</h1>
+          <h1 className="text-2xl font-bold">Create Subcategory</h1>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6">
+      <div className="rounded-lg shadow p-6">
         <SubcategoryForm />
       </div>
     </div>

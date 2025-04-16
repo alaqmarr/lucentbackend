@@ -8,6 +8,7 @@ import { AppSidebar } from '@/components/app-sidebar';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ModeToggle } from '@/components/theme-toggle';
 import { Toaster } from 'react-hot-toast';
+import { bFont } from '@/lib/utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,14 +32,22 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SidebarProvider>
-            <div>
             <AppSidebar />
-            </div>
             <main
               className='max-w-[100vw] p-4'
             >
               <Toaster/>
+              <div
+              className='w-[90vw] flex items-center justify-between p-4 rounded-lg shadow-md'
+              >
               <SidebarTrigger />
+              <p
+              className={`${bFont.className} text-2xl font-extrabold uppercase`}
+              >
+                {process.env.NEXT_PUBLIC_SHORT_NAME}
+              </p>
+              <ModeToggle />
+              </div>
               {children}
             </main>
           </SidebarProvider>
