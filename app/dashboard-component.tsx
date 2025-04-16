@@ -161,7 +161,7 @@ function StatCard({ title, value, icon, description, percentage }: {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between pb-1">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-sm font-bold text-muted-foreground uppercase">
           {title}
         </CardTitle>
         {icon}
