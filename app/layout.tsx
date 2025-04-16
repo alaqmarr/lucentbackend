@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} w-full flex flex-col items-center justify-center`}>
+      <body className={`${inter.className}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -35,19 +35,11 @@ export default function RootLayout({
             <AppSidebar />
             </div>
             <main
-              className='max-w-[100vw] flex flex-col p-4 items-center justify-center'
+              className='max-w-[100vw] p-4'
             >
               <Toaster/>
-              <div
-              className='flex items-center justify-between w-full max-w-[100vw] p-4'
-              >
               <SidebarTrigger />
-              </div>
-              <div
-              className='w-full flex flex-col items-center justify-center'
-              >
-{children}
-              </div>
+              {children}
             </main>
           </SidebarProvider>
         </ThemeProvider>
