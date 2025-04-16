@@ -2,8 +2,10 @@
 import DashboardComponent from './dashboard-component';
 import { prisma } from '@/lib/prisma';
 
+export const revalidate = 0; // Disable caching for this page
+
 export default async function DashboardPage() {
-  // Fetch all data in parallel
+  // Fetch all data in parallel using api calls
   const [
     categoriesCount,
     subcategoriesCount,
