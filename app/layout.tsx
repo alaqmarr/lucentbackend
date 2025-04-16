@@ -32,7 +32,7 @@ export default function RootLayout({
           <SidebarProvider>
             <AppSidebar />
             <main
-              className='p-6'
+              className='max-w-[100vw] p-4'
             >
               <SidebarTrigger />
               {children}
