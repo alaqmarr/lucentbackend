@@ -16,7 +16,7 @@ export default async function CategoriesPage() {
   const categories = await getCategories();
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-8 space-y-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Products</h1>
         <Link href="/products/new">
