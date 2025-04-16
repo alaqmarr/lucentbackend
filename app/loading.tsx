@@ -4,22 +4,22 @@ import { Loader2 } from "lucide-react";
 export default function Loading() {
   return (
     <div
-    className="flex flex-col w-full h-full items-center justify-center space-y-4"
+      className="flex flex-col w-full h-full items-center justify-center space-y-4"
     >
       <Card>
-    <CardHeader className="flex flex-row items-center justify-between pb-2">
-      <CardTitle className="text-sm font-medium text-muted-foreground">
-        Connecting to the server...
-      </CardTitle>
-      <Loader2/>
-    </CardHeader>
-    <CardContent>
-      <div className="text-2xl font-bold">
-        Please wait while we fetch the data
-      </div>
-      <p className="text-xs text-muted-foreground mt-1">Powered by https://alaqmar.dev</p>
-    </CardContent>
-  </Card>
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
+            Connecting to the server...
+          </CardTitle>
+          <Loader2 className="animate-spin" size={20} />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">
+            Please wait while we fetch the data
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">Powered by https://alaqmar.dev</p>
+        </CardContent>
+      </Card>
     </div>
   )
 }
