@@ -14,7 +14,7 @@ export default function Loading() {
           <Loader2 className="animate-spin" size={20} />
         </CardHeader>
         <CardContent>
-          <p className="text-xs text-muted-foreground mt-1">Powered by https://alaqmar.dev</p>
+          <p className="text-xs text-muted-foreground mt-1">Developed and Powered by https://alaqmar.dev</p>
         </CardContent>
       </Card>
     </div>
