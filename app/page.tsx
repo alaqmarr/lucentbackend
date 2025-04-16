@@ -55,22 +55,26 @@ export default async function DashboardPage() {
     datasets: [{
       label: 'Quantity',
       data: inventoryStatus.map(item => item.quantity),
-      backgroundColor: inventoryStatus.map(item => 
-        item.quantity === 0 ? '#ef4444' : 
-        item.quantity < 10 ? '#f59e0b' : '#10b981'
+      backgroundColor: inventoryStatus.map(item =>
+        item.quantity === 0 ? '#ef4444' :
+          item.quantity < 10 ? '#f59e0b' : '#10b981'
       )
     }]
   };
 
   return (
-    <DashboardComponent 
-      categoriesCount={categoriesCount}
-      subcategoriesCount={subcategoriesCount}
-      productsCount={productsCount}
-      liveProductsCount={liveProductsCount}
-      categoryDistribution={categoryDistribution}
-      inventoryData={inventoryData}
-      recentProducts={recentProducts}
-    />
+    <div
+      className='w-full flex flex-col items-center justify-center'
+    >
+      <DashboardComponent
+        categoriesCount={categoriesCount}
+        subcategoriesCount={subcategoriesCount}
+        productsCount={productsCount}
+        liveProductsCount={liveProductsCount}
+        categoryDistribution={categoryDistribution}
+        inventoryData={inventoryData}
+        recentProducts={recentProducts}
+      />
+    </div>
   );
 }
