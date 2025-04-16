@@ -11,12 +11,25 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal, Edit, Trash } from "lucide-react";
 
+
+const remove = async (id: string) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/delete/category/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) {
+    console.error("Failed to delete category");
+    alert("Failed to delete category");
+  }
+  else {
+    alert("Category deleted successfully");
+  }
+}
 export const columns: ColumnDef<Category>[] = [
   {
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => (
-      <Link 
+      <Link
         href={`/categories/${row.original.id}`}
         className="font-medium hover:underline"
       >
@@ -61,13 +74,14 @@ export const columns: ColumnDef<Category>[] = [
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link
-                href={`/categories/${category.id}/delete`}
-                className="flex items-center text-destructive"
+              <Button
+                variant="destructive"
+                className="w-full"
+                onClick={() => remove(category.id)}
               >
                 <Trash className="mr-2 h-4 w-4" />
                 Delete
-              </Link>
+              </Button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
