@@ -79,7 +79,7 @@ export async function AppSidebar() {
                                         </p>
                                     </div>
                                     <p className="text-xs text-muted-foreground">
-                                        Updated: {formatRelativeTime(new Date(setting.updatedAt))}
+                                        Uptd: {formatRelativeTime(new Date(setting.updatedAt))} (UTC)
                                     </p>
                                     {
                                         setting.value === 'admin' && (
