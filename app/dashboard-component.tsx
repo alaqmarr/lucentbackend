@@ -7,6 +7,8 @@ import { BarChart, PieChart } from '@/components/charts';
 import { RecentProducts } from '@/components/dashboard/recent-products';
 import { Icons } from '@/components/icons';
 import Link from 'next/link';
+import { anton, bFont } from '@/lib/utils';
+
 
 interface DashboardProps {
   categoriesCount: number;
@@ -37,19 +39,10 @@ export default function DashboardComponent({
   return (
     <div className="container mx-auto py-8 space-y-8">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-center items-center">
         <div>
-          <h1 className="text-3xl font-bold">Dashboard Overview</h1>
-          <p className="text-muted-foreground">
-            Welcome back! Here's what's happening with your store.
-          </p>
+          <h1 className={`${bFont.className} text-3xl font-extrabold text-muted-foreground uppercase`}>ACME | Dashboard Overview</h1>
         </div>
-        <Button asChild>
-          <Link href="/products/new">
-            <Icons.plus className="mr-2 h-4 w-4" />
-            Add Product
-          </Link>
-        </Button>
       </div>
 
       {/* Stats Cards */}
@@ -85,7 +78,9 @@ export default function DashboardComponent({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Products by Category</CardTitle>
+            <CardTitle
+            className={`${bFont.className} text-2xl font-extrabold uppercase`}
+            >Products by Category</CardTitle>
             <CardDescription>Distribution of products across categories</CardDescription>
           </CardHeader>
           <CardContent>
@@ -97,7 +92,9 @@ export default function DashboardComponent({
 
         <Card>
           <CardHeader>
-            <CardTitle>Inventory Status</CardTitle>
+            <CardTitle
+            className={`${bFont.className} text-2xl font-extrabold uppercase`}
+            >Inventory Status</CardTitle>
             <CardDescription>Products with lowest stock</CardDescription>
           </CardHeader>
           <CardContent>
@@ -112,7 +109,9 @@ export default function DashboardComponent({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Recently Added Products</CardTitle>
+            <CardTitle
+            className={`${bFont.className} text-2xl font-extrabold uppercase`}
+            >Recently Added Products</CardTitle>
             <CardDescription>The latest products in your store</CardDescription>
           </CardHeader>
           <CardContent>
@@ -122,7 +121,9 @@ export default function DashboardComponent({
 
         <Card>
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
+            <CardTitle
+            className={`${bFont.className} text-2xl font-extrabold uppercase`}
+            >Quick Actions</CardTitle>
             <CardDescription>Manage your store</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -160,14 +161,14 @@ function StatCard({ title, value, icon, description, percentage }: {
 }) {
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between pb-1">
-        <CardTitle className="text-sm font-bold text-muted-foreground uppercase">
+      <CardHeader className="flex flex-row items-center justify-between">
+        <CardTitle className={`${bFont.className} text-lg font-extrabold text-muted-foreground uppercase`}>
           {title}
         </CardTitle>
         {icon}
       </CardHeader>
       <CardContent>
-        <div className="text-3xl font-extrabold">{value}</div>
+        <div className={`${anton.className} text-3xl font-extrabold`}>{value}</div>
         {percentage !== undefined && (
           <p className="text-xs text-muted-foreground mt-1">
             {percentage}% of total products

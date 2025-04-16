@@ -1,6 +1,10 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { Bebas_Neue, Anton, Teko } from 'next/font/google';
 
+export const bFont = Bebas_Neue({ subsets: ['latin'], weight: '400' });
+export const anton = Anton({ subsets: ['latin'], weight: '400' });
+export const tekofont = Teko({ subsets: ['latin'], weight: '500' });
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }

@@ -16,7 +16,7 @@ import { prisma } from "@/lib/prisma"
 import { Switch } from "./ui/switch"
 import { updateSetting } from "@/actions/settings"
 import SettingsSwitch from "./settings-switch"
-import { formatRelativeTime } from "@/lib/utils"
+import { bFont, formatRelativeTime, tekofont } from "@/lib/utils"
 
 // Menu items
 const items = [
@@ -38,7 +38,9 @@ export async function AppSidebar() {
         <Sidebar>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
+                    <SidebarGroupLabel
+                        className={`${bFont.className} text-lg font-extrabold text-muted-foreground uppercase`}
+                    >ACME FLOW CONTROL</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {items.map((item) => (
@@ -63,7 +65,7 @@ export async function AppSidebar() {
                 {settings.map((setting) => (
                     <Card
                         key={setting.id}
-                        className={`${!setting.toggle ? 'border-emerald-500' : 'border-red-400'} w-full h-fit p-1`}
+                        className={`${!setting.toggle ? 'border-emerald-500' : 'border-red-400'} ${tekofont.className} w-full h-fit p-1`}
                     >
                         <CardFooter className="flex items-center justify-between gap-x-2 p-2">
                             <div className="flex items-center gap-x-2">
@@ -73,12 +75,12 @@ export async function AppSidebar() {
                                     }`} />
                                 <div className="flex flex-col">
                                     <div className="flex items-center gap-x-1">
-                                        <h3 className="text-xs font-semibold leading-none">{setting.name}</h3>
+                                        <h3 className="text-md uppercase leading-none">{setting.name}</h3>
                                         <p className="text-xs text-muted-foreground">
                                             {!setting.toggle ? "(Operational)" : "(Suspended)"}
                                         </p>
                                     </div>
-                                    <p className="text-xs text-muted-foreground">
+                                    <p className="text-xs text-muted-foreground uppercase">
                                         Uptd: {formatRelativeTime(new Date(setting.updatedAt))} (UTC)
                                     </p>
                                     {
