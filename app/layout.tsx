@@ -9,6 +9,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { ModeToggle } from '@/components/theme-toggle';
 import { Toaster } from 'react-hot-toast';
 import { bFont } from '@/lib/utils';
+import { AppFooter } from '@/components/app-footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -49,6 +50,7 @@ export default function RootLayout({
               <ModeToggle />
               </div>
               {children}
+            <AppFooter/>
             </main>
           </SidebarProvider>
         </ThemeProvider>

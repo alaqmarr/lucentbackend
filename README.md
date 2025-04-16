@@ -31,6 +31,8 @@ The following environment variables need to be configured for the application to
     Example: `"ACME"`
 - `NEXT_PUBLIC_LONG_NAME`: Full name of the application.  
     Example: `"ACME Flow Control"`
+-  `NEXT_PUBLIC_TAGLINE`: Tagline
+    Example: `Control the flow`
 
 ## Documentation
 
