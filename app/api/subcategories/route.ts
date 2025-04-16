@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server';
-import {prisma} from '@/lib/prisma';
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { checkSubcategoryName } from "@/lib/validateName";
 
 export async function GET() {
   try {
@@ -9,13 +10,13 @@ export async function GET() {
         products: true,
       },
       orderBy: {
-        name: 'asc',
+        name: "asc",
       },
     });
     return NextResponse.json(subcategories);
   } catch (error) {
     return NextResponse.json(
-      { error: 'Failed to fetch subcategories' },
+      { error: "Failed to fetch subcategories" },
       { status: 500 }
     );
   }
@@ -24,9 +25,10 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+    const name = await checkSubcategoryName(body.name);
     const subcategory = await prisma.subcategory.create({
       data: {
-        name: body.name,
+        name: name,
         description: body.description,
         slug: body.slug,
         categoryId: body.categoryId,
@@ -35,7 +37,7 @@ export async function POST(req: Request) {
     return NextResponse.json(subcategory, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { error: 'Failed to create subcategory' },
+      { error: "Failed to create subcategory" },
       { status: 500 }
     );
   }

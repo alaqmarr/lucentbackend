@@ -1,6 +1,7 @@
-import { NextResponse } from 'next/server';
-import {prisma} from '@/lib/prisma';
-import { deleteFile } from '@/lib/firebase';
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { deleteFile } from "@/lib/firebase";
+import { checkProductName } from "@/lib/validateName";
 
 export async function GET() {
   try {
@@ -11,13 +12,13 @@ export async function GET() {
         subcategory: true,
       },
       orderBy: {
-        createdAt: 'desc',
+        createdAt: "desc",
       },
     });
     return NextResponse.json(products);
   } catch (error) {
     return NextResponse.json(
-      { error: 'Failed to fetch products' },
+      { error: "Failed to fetch products" },
       { status: 500 }
     );
   }
@@ -26,11 +27,11 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    
+    const name = await checkProductName(body.name);
     // Create product with images
     const product = await prisma.product.create({
       data: {
-        name: body.name,
+        name: name,
         description: body.description,
         price: parseFloat(body.price),
         quantity: parseInt(body.quantity),
@@ -49,9 +50,9 @@ export async function POST(req: Request) {
 
     return NextResponse.json(product, { status: 201 });
   } catch (error) {
-    console.error('Error creating product:', error);
+    console.error("Error creating product:", error);
     return NextResponse.json(
-      { error: 'Failed to create product' },
+      { error: "Failed to create product" },
       { status: 500 }
     );
   }
