@@ -160,14 +160,14 @@ function StatCard({ title, value, icon, description, percentage }: {
 }) {
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
+      <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-sm font-medium text-muted-foreground">
           {title}
         </CardTitle>
         {icon}
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
+        <div className="text-3xl font-extrabold">{value}</div>
         {percentage !== undefined && (
           <p className="text-xs text-muted-foreground mt-1">
             {percentage}% of total products
