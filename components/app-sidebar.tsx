@@ -16,6 +16,7 @@ import { prisma } from "@/lib/prisma"
 import { Switch } from "./ui/switch"
 import { updateSetting } from "@/actions/settings"
 import SettingsSwitch from "./settings-switch"
+import { formatRelativeTime } from "@/lib/utils"
 
 // Menu items
 const items = [
@@ -78,8 +79,17 @@ export async function AppSidebar() {
                                         </p>
                                     </div>
                                     <p className="text-xs text-muted-foreground">
-                                        Last updated: {new Date(setting.updatedAt).toTimeString()}
+                                        Updated: {formatRelativeTime(new Date(setting.updatedAt))}
                                     </p>
+                                    {
+                                        setting.value === 'admin' && (
+                                            <p
+                                                className="text-xs font-extrabold text-red-300"
+                                            >
+                                                (Cannot change this setting)
+                                            </p>
+                                        )
+                                    }
                                 </div>
                             </div>
                             <SettingsSwitch setting={setting} />
