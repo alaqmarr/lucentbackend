@@ -14,8 +14,8 @@ import { AppFooter } from '@/components/app-footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'ACME Flow Control | Manage',
-  description: 'Manage ACME Flow Control',
+  title: `${process.env.NEXT_PUBLIC_SHORT_NAME} | Manage`,
+  description: `Manage ${process.env.NEXT_PUBLIC_SHORT_NAME}`,
 };
 
 export default function RootLayout({
@@ -39,7 +39,7 @@ export default function RootLayout({
             >
               <Toaster/>
               <div
-              className='w-[90vw] flex items-center justify-between p-4 rounded-lg shadow-md'
+              className='flex items-center justify-between p-4 rounded-lg shadow-md'
               >
               <SidebarTrigger />
               <p
